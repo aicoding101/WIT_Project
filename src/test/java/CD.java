@@ -36,9 +36,15 @@ public class CD {
         driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
     }
 
+//    Takes an integer of pixels to determine the range scrolled within a page (scroll down)
     public static void ScrollPage(int pixels){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0," + pixels + ")");
+        if(pixels > 0){
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0," + pixels + ")");
+        }else{
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0," + Integer.MAX_VALUE + ")");
+        }
     }
 
     public static Select selected;
