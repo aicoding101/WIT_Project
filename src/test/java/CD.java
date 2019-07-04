@@ -1,8 +1,5 @@
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -36,15 +33,45 @@ public class CD {
         driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
     }
 
-//    Takes an integer of pixels to determine the range scrolled within a page (scroll down)
+    //    Takes an integer of pixels to determine the range scrolled within a page (scroll down)
     public static void ScrollPage(int pixels){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         if(pixels > 0){
-            JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0," + pixels + ")");
         }else{
-            JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0," + Integer.MAX_VALUE + ")");
         }
+    }
+
+    public static void CloseTab(){
+        driver.findElement(By.tagName("body")).sendKeys(Keys.chord(Keys.CONTROL, "w"));
+    }
+
+    public static WebElement Element;
+
+    public static void ScrollToElement(String locator, String value){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        if(locator.equalsIgnoreCase("id")){
+            Element = driver.findElement(By.id(value));
+        }else if(locator.equalsIgnoreCase("xpath")){
+            Element = driver.findElement(By.xpath(value));
+        }else if(locator.equalsIgnoreCase("name")){
+            Element = driver.findElement(By.name(value));
+        }else if(locator.equalsIgnoreCase("link")){
+            Element = driver.findElement(By.linkText(value));
+        }else if(locator.equalsIgnoreCase("partial")){
+            Element = driver.findElement(By.partialLinkText(value));
+        }else if(locator.equalsIgnoreCase("css")){
+            Element = driver.findElement(By.cssSelector(value));
+        }else if(locator.equalsIgnoreCase("tag")){
+            Element = driver.findElement(By.tagName(value));
+        }else if(locator.equalsIgnoreCase("className")){
+            Element = driver.findElement(By.className(value));
+        }else{
+            System.out.println("Invalid locator");
+            Done();
+        }
+        js.executeScript("arguments[0].scrollIntoView();", Element);
     }
 
     public static Select selected;
