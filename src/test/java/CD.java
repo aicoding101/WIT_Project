@@ -20,9 +20,11 @@ public class CD {
 
     //    Set driver to FireFox and Open the browser to the injected link
     public static void SetGeckoDriver(String link){
-        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Airheem\\Documents\\selenium dependencies\\drivers\\geckodriver.exe");
+        WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         driver.get(link);
+        driver.manage().window().maximize();
+        WaitTime(10);
     }
 
     public static void NavigateToPage(String link){
@@ -33,22 +35,7 @@ public class CD {
         driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
     }
 
-    //    Takes an integer of pixels to determine the range scrolled within a page (scroll down)
-    public static void ScrollPage(int pixels){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        if(pixels > 0){
-            js.executeScript("window.scrollBy(0," + pixels + ")");
-        }else{
-            js.executeScript("window.scrollBy(0," + Integer.MAX_VALUE + ")");
-        }
-    }
-
-    public static void CloseTab(){
-        driver.findElement(By.tagName("body")).sendKeys(Keys.chord(Keys.CONTROL, "w"));
-    }
-
     public static WebElement Element;
-
     public static void ScrollToElement(String locator, String value){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         if(locator.equalsIgnoreCase("id")){
@@ -74,8 +61,21 @@ public class CD {
         js.executeScript("arguments[0].scrollIntoView();", Element);
     }
 
-    public static Select selected;
+    //    Takes an integer of pixels to determine the range scrolled within a page (scroll down)
+    public static void ScrollPage(int pixels){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        if(pixels > 0){
+            js.executeScript("window.scrollBy(0," + pixels + ")");
+        }else{
+            js.executeScript("window.scrollBy(0," + Integer.MAX_VALUE + ")");
+        }
+    }
 
+    public static void CloseTab(){
+        driver.findElement(By.tagName("body")).sendKeys(Keys.chord(Keys.CONTROL, "w"));
+    }
+
+    public static Select selected;
     public static void CreateSelectObject(String locator, String value) {
         if(locator.equalsIgnoreCase("id")){
             selected = new Select(driver.findElement(By.id(value)));
