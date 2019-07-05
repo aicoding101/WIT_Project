@@ -8,43 +8,136 @@ import java.util.Set;
 
 public class Ameer {
     public static void main(String[] args) throws InterruptedException{
+        VideoChannelsVerification();
     }
 
-    public static void ScrollPage() throws InterruptedException{
+    public static void VideoChannelsVerification() throws InterruptedException{
+
+//        THIS METHOD WILL NAVIGATE TO VIDEO CHANNELS AND VERIFY IF EACH SELECTION IS DISPLAYED AND NAVIGATES TO THE CORRECT PAGE
+
+        String linkCompare = "";
+        int s = 1000;
+
         CD.SetChromeDriver("https://disney.com/");
-        CD.WaitTime(10);
-        Thread.sleep(2000);
-        CD.ScrollToElement("xpath", "//body//img[@alt='Disney Princess Videos']");
-//        CD.ScrollToBottom();
-        Thread.sleep(3000);
-        String click = Keys.chord(Keys.CONTROL, Keys.ENTER);
-        List<WebElement> listOfA = CD.driver.findElement(By.cssSelector("#ref-1-9 .bound.none.unstyled_entity")).findElements(By.tagName("a"));
-        System.out.println(listOfA.size());
-        for(WebElement w: listOfA){
-            if(w.getAttribute("href").contains("disney.com/disney-princess")){
-                w.sendKeys(click);
-            }
-        }
-        Thread.sleep(2000);
-        Set<String> windows = CD.driver.getWindowHandles();
-        Iterator<String> it = windows.iterator();
-        String parent = it.next();
-        String child = it.next();
-        Thread.sleep(2000);
-        String anotherTabTitle =  CD.driver.switchTo().window(child).getTitle();
-        System.out.println(anotherTabTitle);
-        CD.driver.switchTo().window(parent);
+        CD.MaximizeWindow();
+        CD.WaitTime(5);
 
+//        DISNEY PRINCESSES SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        System.out.println("Disney Princesses gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Disney Princess Videos']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Disney Princess Videos']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Disney Princess Videos']");
+        Thread.sleep(s);
+        System.out.println("Disney Princesses link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
 
+//        DISNEY PIXAR SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        System.out.println("Disney•Pixar gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Disney•Pixar']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Disney•Pixar']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Disney•Pixar']");
+        Thread.sleep(s);
+        System.out.println("Disney•Pixar link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
 
-//        WebElement pic = CD.driver.findElement(By.cssSelector("[src*='channelsquares_disneyprincess_ddt-16860_fbd67095']"));
+//        OH MY DISNEY SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        System.out.println("Oh My Disney gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Oh My Disney']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Oh My Disney']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Oh My Disney']");
+        Thread.sleep(s);
+        System.out.println("Oh My Disney link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
 
-//        pic.sendKeys(click);
+//        DISNEY STYLE SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        System.out.println("Disney Style gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Disney Style']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Disney Style']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Disney Style']");
+        Thread.sleep(s);
+        System.out.println("Disney Style link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
 
-        Thread.sleep(2000);
-//        CD.CloseTab();
-//        Thread.sleep(8000);
-//        CD.WaitTime(10);
+//        RADIO DISNEY SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        CD.FindAndClick("xpath", "//body//div//section[@id='ref-1-9']//button[@title='Next']");
+        System.out.println("Radio Disney gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Radio Disney']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Radio Disney']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Radio Disney']");
+        Thread.sleep(s);
+        System.out.println("Radio Disney link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
+
+//        DISNEY FAMILY SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div//section[@id='ref-1-9']//button[@title='Next']");
+        Thread.sleep(s);
+        System.out.println("Disney Family gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Disney Family']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Disney Family']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Disney Family']");
+        Thread.sleep(s);
+        System.out.println("Disney Family link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
+
+//        STAR WARS SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div//section[@id='ref-1-9']//button[@title='Next']");
+        Thread.sleep(s);
+        System.out.println("Star Wars gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Star Wars']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Star Wars']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Star Wars']");
+        Thread.sleep(s);
+        System.out.println("Star Wars link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
+
+//        DISNEY CHANNEL SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div//section[@id='ref-1-9']//button[@title='Next']");
+        Thread.sleep(s);
+        System.out.println("Disney Channel gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Disney Channel']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Disney Channel']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Disney Channel']");
+        Thread.sleep(s);
+        System.out.println("Disney Channel link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
+
+//        MARVEL SELECTION
+        CD.ScrollToElement("xpath", "//body//div//section[@id='ref-1-9']");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div//section[@id='ref-1-9']//button[@title='Next']");
+        Thread.sleep(s);
+//        DOES NOT WORK ???
+//        CD.FindAndClick("xpath", "//body//div//section[@id='ref-1-9']//button[@title='Next']");
+        CD.FindAndClick("xpath", "//*[@id=\"ref-1-9\"]/div/div[2]/button[2]");
+        Thread.sleep(s);
+        System.out.println("Marvel gif is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div/a[@data-title='Marvel']")));
+        linkCompare = CD.driver.findElement(By.xpath("//body//div/a[@data-title='Marvel']")).getAttribute("href");
+        Thread.sleep(s);
+        CD.FindAndClick("xpath", "//body//div/a[@data-title='Marvel']");
+        Thread.sleep(s);
+        System.out.println("Marvel link is valid: " + CD.PassOrFail(CD.driver.getCurrentUrl().equals(linkCompare)));
+        CD.driver.navigate().back();
+        Thread.sleep(s);
+
         CD.ThatsIt();
     }
 

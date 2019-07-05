@@ -58,7 +58,7 @@ public class CD {
             System.out.println("Invalid locator");
             Done();
         }
-        js.executeScript("arguments[0].scrollIntoView();", Element);
+//        js.executeScript("arguments[0].scrollIntoView();", Element);
     }
 
     //    Takes an integer of pixels to determine the range scrolled within a page (scroll down)
