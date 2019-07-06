@@ -10,7 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Azamat {
     public static void main(String[] args)throws InterruptedException {
+    }
 
+    public static void AzamatTestOne() throws InterruptedException{
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().fullscreen();
@@ -18,27 +20,29 @@ public class Azamat {
         driver.get("https://www.disney.com");
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-        CD.FindAndClick("id", "goc-button");
-        CD.FindAndClick("xpath", "//body//dl//a//u");
+//        CD.FindAndClick("xpath", "//body//div/button[@class='goc-button']");
+//        CD.FindAndClick("xpath", "//body//dl//a//u");
 
-//        driver.findElement(By.id("goc-button")).click();
-//        driver.findElement(By.xpath("//a[@class = ' goc-icn-1']")).click();
+        driver.findElement(By.id("goc-button")).click();
+        driver.findElement(By.xpath("//body//div//a[.='Sale']")).click();
 
-//        CD.FindAndClick("xpath", "//li[@data-category='SALE']");
+        Thread.sleep(3000);
 
-//        List<WebElement> list = driver.findElements(By.xpath("//li[@data-subitem='Limited Time Offers']/ul//a"));
-//
-//        for(WebElement l:list){
+//        WebElement sale = driver.findElement(By.xpath("//body//div//a[@href='/sale']"));
+//        List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"side-nav-categories\"]/ul[1]/li[2]/div[2]/div/div/ul[2]/li/ul[2]/li/ul"));
+
+        CD.MoveToElement("xpath", "//body//div//a[@href='/sale']");
+
+//        for(WebElement elem:elements){
 //            Thread.sleep(3000);
 //            Actions action = new Actions(driver);
 //            action.moveToElement(sale).perform();
 //            Thread.sleep(3000);
-//            l.click();
-//            System.out.println(l.getText());
+//            elem.click();
+//            System.out.println(elem.getAttribute("href") + "\n" + driver.getCurrentUrl());
 //        }
 
         CD.Done();
-
-
     }
+
 }

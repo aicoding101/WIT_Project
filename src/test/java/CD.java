@@ -2,8 +2,12 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 public class CD {
@@ -29,6 +33,14 @@ public class CD {
 
     public static void NavigateToPage(String link){
         driver.navigate().to(link);
+    }
+
+    public static void Forward(){
+        driver.navigate().forward();
+    }
+
+    public static void Back(){
+        driver.navigate().back();
     }
 
     public static void WaitTime(int time) {
@@ -73,6 +85,45 @@ public class CD {
 
     public static void CloseTab(){
         driver.findElement(By.tagName("body")).sendKeys(Keys.chord(Keys.CONTROL, "w"));
+    }
+
+    public static void MoveToElement(String locator, String value){
+        if(locator.equalsIgnoreCase("id")){
+            WebElement web = CD.driver.findElement(By.id(value));
+            Actions action = new Actions(CD.driver);
+            action.moveToElement(web).perform();
+        }else if(locator.equalsIgnoreCase("xpath")){
+            WebElement web = CD.driver.findElement(By.xpath(value));
+            Actions action = new Actions(CD.driver);
+            action.moveToElement(web).perform();
+        }else if(locator.equalsIgnoreCase("name")){
+            WebElement web = CD.driver.findElement(By.name(value));
+            Actions action = new Actions(CD.driver);
+            action.moveToElement(web).perform();
+        }else if(locator.equalsIgnoreCase("link")){
+            WebElement web = CD.driver.findElement(By.linkText(value));
+            Actions action = new Actions(CD.driver);
+            action.moveToElement(web).perform();
+        }else if(locator.equalsIgnoreCase("partial")){
+            WebElement web = CD.driver.findElement(By.partialLinkText(value));
+            Actions action = new Actions(CD.driver);
+            action.moveToElement(web).perform();
+        }else if(locator.equalsIgnoreCase("css")){
+            WebElement web = CD.driver.findElement(By.cssSelector(value));
+            Actions action = new Actions(CD.driver);
+            action.moveToElement(web).perform();
+        }else if(locator.equalsIgnoreCase("tag")){
+            WebElement web = CD.driver.findElement(By.tagName(value));
+            Actions action = new Actions(CD.driver);
+            action.moveToElement(web).perform();
+        }else if(locator.equalsIgnoreCase("className")){
+            WebElement web = CD.driver.findElement(By.className(value));
+            Actions action = new Actions(CD.driver);
+            action.moveToElement(web).perform();
+        }else{
+            System.out.println("Invalid locator");
+            ThatsIt();
+        }
     }
 
     public static Select selected;
@@ -149,9 +200,9 @@ public class CD {
     //    Tells us if a test passed or failed
     public static String PassOrFail(boolean b) {
         if(b) {
-            return "Passed";
+            return "PASSED";
         } else {
-            return "Failed";
+            return "PASSED";
         }
     }
 
