@@ -11,6 +11,9 @@ import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 public class CD {
+
+//    WELCOME TO SAIM AND AMEER'S DEPENDENCIES!
+
     public static WebDriver driver;
 
     //    Set driver to Chrome and Open the browser to the injected link
