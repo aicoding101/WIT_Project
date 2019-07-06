@@ -34,7 +34,7 @@ public class Ameer {
 
 //        DESTINATIONS
         CD.FindAndClick("xpath", "//body//div//section//h2[contains(text(), \"Destinations\")]");
-        System.out.println("Destinations is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div//section//h2[contains(text(), \"Destinations\")]")));
+        System.out.println("Destinations is displayed: " + CD.PassOrFail(!CD.FindAndDisplay("xpath", "//body//div//section//h2[contains(text(), \"Destinations\")]")));
         Thread.sleep(s);
         CD.FindAndClick("xpath", "//body//main//section//div//section//span[@class='NorthAmerica ']");
         Thread.sleep(s);
@@ -50,7 +50,7 @@ public class Ameer {
         CD.FindAndClick("xpath", "//body//main//section//span[contains(text(), \"Sep\")]");
         Thread.sleep(s);
         CD.FindAndDisplay("xpath", "//body//main//section//div//section[@id='dates-filter-group']");
-        System.out.println("Sep is selected: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//main//*[@id=\"dates-filter-group\"]/p[contains(text(), \"Sep\")]")));
+        System.out.println("Sep is selected: " + CD.PassOrFail(!CD.FindAndDisplay("xpath", "//body//main//*[@id=\"dates-filter-group\"]/p[contains(text(), \"Sep\")]")));
 //
 
 //        TRIP TYPES

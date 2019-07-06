@@ -6,15 +6,17 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
-public class CD {
+public class CD extends ColouredSystemOutPrintln{
 
 //    WELCOME TO SAIM AND AMEER'S DEPENDENCIES!
+//    HERE WE BELIEVE IN CODE RE-USABILITY!
 
     public static WebDriver driver;
+    public static WebElement element;
+    public static Select selected;
+    public static Actions action;
 
     //    Set driver to Chrome and Open the browser to the injected link
     public static void SetChromeDriver(String link) {
@@ -50,30 +52,30 @@ public class CD {
         driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
     }
 
-    public static WebElement Element;
+
     public static void ScrollToElement(String locator, String value){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         if(locator.equalsIgnoreCase("id")){
-            Element = driver.findElement(By.id(value));
+            element = driver.findElement(By.id(value));
         }else if(locator.equalsIgnoreCase("xpath")){
-            Element = driver.findElement(By.xpath(value));
+            element = driver.findElement(By.xpath(value));
         }else if(locator.equalsIgnoreCase("name")){
-            Element = driver.findElement(By.name(value));
+            element = driver.findElement(By.name(value));
         }else if(locator.equalsIgnoreCase("link")){
-            Element = driver.findElement(By.linkText(value));
+            element = driver.findElement(By.linkText(value));
         }else if(locator.equalsIgnoreCase("partial")){
-            Element = driver.findElement(By.partialLinkText(value));
+            element = driver.findElement(By.partialLinkText(value));
         }else if(locator.equalsIgnoreCase("css")){
-            Element = driver.findElement(By.cssSelector(value));
+            element = driver.findElement(By.cssSelector(value));
         }else if(locator.equalsIgnoreCase("tag")){
-            Element = driver.findElement(By.tagName(value));
+            element = driver.findElement(By.tagName(value));
         }else if(locator.equalsIgnoreCase("className")){
-            Element = driver.findElement(By.className(value));
+            element = driver.findElement(By.className(value));
         }else{
             System.out.println("Invalid locator");
             Done();
         }
-//        js.executeScript("arguments[0].scrollIntoView();", Element);
+//        js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
     //    Takes an integer of pixels to determine the range scrolled within a page (scroll down)
@@ -90,38 +92,32 @@ public class CD {
         driver.findElement(By.tagName("body")).sendKeys(Keys.chord(Keys.CONTROL, "w"));
     }
 
+
     public static void MoveToElement(String locator, String value){
+        action = new Actions(CD.driver);
         if(locator.equalsIgnoreCase("id")){
             WebElement web = CD.driver.findElement(By.id(value));
-            Actions action = new Actions(CD.driver);
             action.moveToElement(web).perform();
         }else if(locator.equalsIgnoreCase("xpath")){
             WebElement web = CD.driver.findElement(By.xpath(value));
-            Actions action = new Actions(CD.driver);
             action.moveToElement(web).perform();
         }else if(locator.equalsIgnoreCase("name")){
             WebElement web = CD.driver.findElement(By.name(value));
-            Actions action = new Actions(CD.driver);
             action.moveToElement(web).perform();
         }else if(locator.equalsIgnoreCase("link")){
             WebElement web = CD.driver.findElement(By.linkText(value));
-            Actions action = new Actions(CD.driver);
             action.moveToElement(web).perform();
         }else if(locator.equalsIgnoreCase("partial")){
             WebElement web = CD.driver.findElement(By.partialLinkText(value));
-            Actions action = new Actions(CD.driver);
             action.moveToElement(web).perform();
         }else if(locator.equalsIgnoreCase("css")){
             WebElement web = CD.driver.findElement(By.cssSelector(value));
-            Actions action = new Actions(CD.driver);
             action.moveToElement(web).perform();
         }else if(locator.equalsIgnoreCase("tag")){
             WebElement web = CD.driver.findElement(By.tagName(value));
-            Actions action = new Actions(CD.driver);
             action.moveToElement(web).perform();
         }else if(locator.equalsIgnoreCase("className")){
             WebElement web = CD.driver.findElement(By.className(value));
-            Actions action = new Actions(CD.driver);
             action.moveToElement(web).perform();
         }else{
             System.out.println("Invalid locator");
@@ -129,7 +125,7 @@ public class CD {
         }
     }
 
-    public static Select selected;
+
     public static void CreateSelectObject(String locator, String value) {
         if(locator.equalsIgnoreCase("id")){
             selected = new Select(driver.findElement(By.id(value)));
@@ -205,7 +201,7 @@ public class CD {
         if(b) {
             return "PASSED";
         } else {
-            return "PASSED";
+            return "FAILED";
         }
     }
 
@@ -214,7 +210,7 @@ public class CD {
         driver.manage().window().maximize();
     }
 
-    //    Find Element (clickable field) in page and click
+    //    Find element (clickable field) in page and click
 //    Can also be used to click on random text (when you want to click away from a certain field)
 //    locator: choose locator type (eg. name, id, xpath, etc.)
 //    value: value of element based on locator (eg. locator name: element "some name")
@@ -241,7 +237,7 @@ public class CD {
         }
     }
 
-    //    Find Element (text box) in a page and send given keys
+    //    Find element (text box) in a page and send given keys
 //    locator: choose locator type (eg. name, id, xpath, etc.)
 //    value: value of element based on locator (eg. locator name: element "some name")
 //    send: value to be sent to input box (eg. locator id: element "some id", send "some text you want to input")
@@ -268,7 +264,7 @@ public class CD {
         }
     }
 
-    //    Find Element (text box) in a page and send given keys, then enter
+    //    Find element (text box) in a page and send given keys, then enter
 //    locator: choose locator type (eg. name, id, xpath, etc.)
 //    value: value of element based on locator (eg. locator name: element "some name")
 //    send: value to be sent to input box (eg. locator id: element "some id", send "some text you want to input")
