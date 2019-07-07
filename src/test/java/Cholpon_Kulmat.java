@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Cholpon_Kulmat {
     public static void main(String[] args) throws InterruptedException{
-//        SelectAge();
-//        ContactInfo();
-//        OpenPhotoPage();
+        SelectAge();
+        ContactInfo();
+        OpenPhotoPage();
     }
 
     public static void SelectAge() throws InterruptedException{
@@ -27,7 +27,6 @@ public class Cholpon_Kulmat {
             System.out.println("Go to website verification FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement menu = driver.findElement(By.id("goc-button"));
         menu.click();
         if(menu.isDisplayed()){
@@ -36,7 +35,6 @@ public class Cholpon_Kulmat {
             System.out.println("Menu displayed verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement aulani=driver.findElement(By.linkText("Aulani"));
         aulani.click();
         if(aulani.isDisplayed()){
@@ -46,7 +44,6 @@ public class Cholpon_Kulmat {
             System.out.println("Click to Aulini page verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement adultcounter=driver.findElement(By.id("adult-counter"));
         if(adultcounter.getText().equals("1")){
             System.out.println("Adult counter default value verification is PASSED!");
@@ -54,7 +51,6 @@ public class Cholpon_Kulmat {
             System.out.println("Adult counter default value verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement plusSign=driver.findElement(By.xpath("//*[@id=\"WDWRooms_AulaniRoomOnlySQQProductOption_AulaniSQQPartyMix\"]/div[1]/div/button[2]"));
         plusSign.click();
         plusSign.click();
@@ -65,7 +61,6 @@ public class Cholpon_Kulmat {
             System.out.println("Value increment verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement minus = driver.findElement(By.xpath("//*[@id=\"WDWRooms_AulaniRoomOnlySQQProductOption_AulaniSQQPartyMix\"]/div[1]/div/button[1]"));
         minus.click();
         if(minus.isDisplayed()){
@@ -74,7 +69,6 @@ public class Cholpon_Kulmat {
             System.out.println("Value dicrement verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement children = driver.findElement(By.xpath("//*[@id='WDWRooms_AulaniRoomOnlySQQProductOption_AulaniSQQPartyMix']/div[2]/div/button[2]"));
         children.click();
         if(driver.getCurrentUrl().equals("https://www.disneyaulani.com/?DISCID=DI_flyawaynav_12")){
@@ -83,7 +77,6 @@ public class Cholpon_Kulmat {
             System.out.println("Invrement to childerns value verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement dropBox= driver.findElement(By.id("WDWRooms_AulaniRoomOnlySQQProductOption_AulaniSQQPartyMix_child1"));
         dropBox.click();
         if(dropBox.isDisplayed()){
@@ -93,7 +86,6 @@ public class Cholpon_Kulmat {
             System.out.println("Drop box verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         Select sel= new Select(dropBox);
         sel.selectByVisibleText("10");
         if(driver.getCurrentUrl().equals("https://www.disneyaulani.com/?DISCID=DI_flyawaynav_12")){
@@ -103,7 +95,6 @@ public class Cholpon_Kulmat {
             System.out.println("Age select verification is FAILED!");
         }
 
-        Thread.sleep(3000);
         WebElement viewRates = driver.findElement(By.id("WDWRooms_AulaniRoomOnlySQQProductOption_Submit"));
         viewRates.click();
         if(viewRates.isDisplayed()){
@@ -132,13 +123,12 @@ public class Cholpon_Kulmat {
 
         WebElement aulani = driver.findElement(By.linkText("Aulani"));
         aulani.click();
-        if (aulani.isDisplayed()) {
+        if (driver.getTitle().contains("Aulani")) {
             System.out.println("Aulani select verification is PASSED!");
         } else {
             System.out.println("Aulani select verification is FAILED!");
         }
 
-        Thread.sleep(1000);
         WebElement contactUs = driver.findElement(By.id("Aulani_Footer2_Questions_Contact_Us"));
         contactUs.click();
         if (driver.getCurrentUrl().equals("https://www.disneyaulani.com/about-aulani/contact-us/")) {
@@ -150,31 +140,24 @@ public class Cholpon_Kulmat {
 
         Faker faker = new Faker();
 
-        Thread.sleep(2000);
         WebElement firstName = driver.findElement(By.id("first_name"));
         firstName.sendKeys(faker.name().firstName());
 
-        Thread.sleep(1000);
         WebElement lastName = driver.findElement(By.id("last_name"));
         lastName.sendKeys(faker.name().lastName());
 
-        Thread.sleep(1000);
         WebElement email = driver.findElement(By.id("email_address"));
         email.sendKeys(faker.internet().emailAddress());
 
-        Thread.sleep(1000);
         WebElement select = driver.findElement(By.id("subject"));
         select.click();
 
-        Thread.sleep(1000);
         Select selectObj = new Select(select);
         selectObj.selectByVisibleText("Guest Information");
 
-        Thread.sleep(1000);
         WebElement sendMessage = driver.findElement(By.id("your_question"));
         sendMessage.sendKeys("Hello, Could you please tell me how much cost cruise trip for one week?,Thank You!");
 
-        Thread.sleep(1000);
         WebElement send = driver.findElement(By.id("go_submit"));
         send.click();
         if(driver.getCurrentUrl().equals("https://www.disneyaulani.com/about-aulani/contact-us/?form=complete&url=home")){
@@ -202,7 +185,6 @@ public class Cholpon_Kulmat {
             System.out.println("Go to website verification FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement aulani = driver.findElement(By.linkText("Aulani"));
         aulani.click();
         if (aulani.isDisplayed()) {
@@ -212,7 +194,6 @@ public class Cholpon_Kulmat {
             System.out.println("Aulani select verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement roomsAndoffers = driver.findElement(By.id("Rooms&Offers"));
         roomsAndoffers.click();
         if(driver.getCurrentUrl().equals("https://www.disneyaulani.com/rooms-offers/")){
@@ -221,7 +202,6 @@ public class Cholpon_Kulmat {
         else{
             System.out.println("Rooms and Offers click verification is FAILED!");
         }
-        Thread.sleep(2000);
         WebElement photo = driver.findElement(By.id("launchWDW_Rooms_FloorplanImages_IslandGardensView"));
         photo.click();
         if (photo.isDisplayed()) {
@@ -230,7 +210,6 @@ public class Cholpon_Kulmat {
             System.out.println("Photo verification FAILED");
         }
 
-        Thread.sleep(2000);
         WebElement next = driver.findElement(By.xpath("//div[@class='select-toggle hoverable']"));
         next.click();
         if(next.isDisplayed()){
@@ -240,7 +219,6 @@ public class Cholpon_Kulmat {
             System.out.println("Next button click verification FAILED!");
         }
 
-        Thread.sleep(200);
         WebElement maximize = driver.findElement(By.xpath("//a[@class='fullscreenButton']"));
         maximize.click();
         if (maximize.isDisplayed()) {
@@ -249,16 +227,11 @@ public class Cholpon_Kulmat {
             System.out.println("Screen maximize verification is FAILED!");
         }
 
-        Thread.sleep(2000);
         WebElement nextPicture = driver.findElement(By.xpath("//a[@class='carouselNext']"));
         nextPicture.click();
-        Thread.sleep(1000);
         nextPicture.click();
-        Thread.sleep(1000);
         nextPicture.click();
-        Thread.sleep(1000);
         nextPicture.click();
-        Thread.sleep(1000);
         nextPicture.click();
         if(nextPicture.isDisplayed()){
             System.out.println("Clicking to next picture clickable verification is PASSED!");
@@ -267,7 +240,6 @@ public class Cholpon_Kulmat {
             System.out.println("Clicking to next picture clickable verification is FAILED!");
         }
 
-        Thread.sleep(1000);
         WebElement minimize = driver.findElement(By.xpath("//a[@class='fullscreenButton enabled']"));
         minimize.click();
         if (minimize.isDisplayed()) {
@@ -276,7 +248,6 @@ public class Cholpon_Kulmat {
             System.out.println("Screen minimize verification is FAILED!");
         }
 
-        Thread.sleep(1000);
         WebElement closeScreen = driver.findElement(By.xpath("//a[@class='mediaEngineCloseBtn']"));
         closeScreen.click();
         if(driver.getCurrentUrl().equals("https://www.disneyaulani.com/rooms-offers/")){

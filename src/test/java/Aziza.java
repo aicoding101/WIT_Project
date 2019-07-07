@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Aziza {
     public static void main(String[] args) throws InterruptedException{
-//        AzizaTestOne();
-//        AzizaTestTwo();
-//        AzizaTestThree();
+        AzizaTestOne();
+        AzizaTestTwo();
+        AzizaTestThree();
     }
 
     public static void AzizaTestOne() throws InterruptedException{

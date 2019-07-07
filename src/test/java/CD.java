@@ -125,8 +125,21 @@ public class CD extends ColouredSystemOutPrintln{
         }
     }
 
+//    public static WebElement MoveToElement(Locators locator, String value){
+//        action = new Actions(CD.driver);
+//        WebElement web = null;
+//        switch (locator){
+//            case xpath:
+//                web = CD.driver.findElement(By.xpath(value));
+//                action.moveToElement(web).perform();
+//                break;
+//        }
+//        return web;
+//    }
 
-    public static void CreateSelectObject(String locator, String value) {
+
+
+        public static void CreateSelectObject(String locator, String value) {
         if(locator.equalsIgnoreCase("id")){
             selected = new Select(driver.findElement(By.id(value)));
         }else if(locator.equalsIgnoreCase("xpath")){
@@ -199,9 +212,9 @@ public class CD extends ColouredSystemOutPrintln{
     //    Tells us if a test passed or failed
     public static String PassOrFail(boolean b) {
         if(b) {
-            return "PASSED";
+            return ANSI_GREEN + "PASSED" + ANSI_RESET;
         } else {
-            return "FAILED";
+            return ANSI_RED + "FAILED" + ANSI_RESET;
         }
     }
 
@@ -325,4 +338,8 @@ public class CD extends ColouredSystemOutPrintln{
         driver.quit();
     }
 
+}
+
+enum Locators{
+    xpath, id, name, linkText, cssSelector
 }

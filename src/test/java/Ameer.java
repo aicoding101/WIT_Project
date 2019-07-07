@@ -10,10 +10,9 @@ import java.util.Set;
 public class Ameer {
     public static void main(String[] args) throws InterruptedException{
 //        WEBSITE: DISNEY.COM
-
         AvdentureTime();
-        ParksAndTravelDropdownVerification();
-        VideoChannelsVerification();
+//        ParksAndTravelDropdownVerification();
+//        VideoChannelsVerification();
 
     }
 
@@ -22,57 +21,44 @@ public class Ameer {
 
         CD.SetChromeDriver("http://disney.com");
         CD.MaximizeWindow();
-        CD.WaitTime(5);
+        CD.WaitTime(15);
 
 //        NAVIGATES TO ADVENTURES BY DISNEY
-        CD.MoveToElement("xpath", "//body//div//span/li[@class='goc-desktop goc-parks goc-top-dropdown goc-left-2']");
-        CD.FindAndClick("xpath", "//body//div//div//span//span/span/a[@title='Adventures by Disney']");
-        Thread.sleep(s);
+        CD.MoveToElement("xpath", "//div//span/li[@class='goc-desktop goc-parks goc-top-dropdown goc-left-2']");
+        CD.FindAndClick("xpath", "//div//div//span//span/span/a[@title='Adventures by Disney']");
 //
 
 //        FIND YOUR TRIP HERE SELECTION AREA
 
 //        DESTINATIONS
-        CD.FindAndClick("xpath", "//body//div//section//h2[contains(text(), \"Destinations\")]");
-        System.out.println("Destinations is displayed: " + CD.PassOrFail(!CD.FindAndDisplay("xpath", "//body//div//section//h2[contains(text(), \"Destinations\")]")));
-        Thread.sleep(s);
-        CD.FindAndClick("xpath", "//body//main//section//div//section//span[@class='NorthAmerica ']");
-        Thread.sleep(s);
-        CD.FindAndClick("xpath", "//body//div//section//h2[contains(text(), \"Destinations\")]");
+        CD.FindAndClick("xpath", "//div//section//h2[contains(text(), \"Destinations\")]");
+        System.out.println("Destinations is displayed: " + CD.PassOrFail(!CD.FindAndDisplay("xpath", "//h2[contains(text(), \"Destinations\")]")));
+        CD.FindAndClick("xpath", "//main//section//div//section//span[@class='NorthAmerica ']");
+        CD.FindAndClick("xpath", "//div//section//h2[contains(text(), \"Destinations\")]");
         System.out.println("North America is selected: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//main//*[@id=\"destinations-filter-group\"]/p[contains(text(), \"North America\")]")));
 //
 
 //        DEPARTURE DATES
         System.out.println("Departure Dates is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//main//section//div//section//h2[contains(text(), \"Departure Dates\")]")));
-        Thread.sleep(s);
         CD.FindAndClick("xpath", "//body//main//section//div//section//h2[contains(text(), \"Departure Dates\")]");
-        Thread.sleep(s);
         CD.FindAndClick("xpath", "//body//main//section//span[contains(text(), \"Sep\")]");
-        Thread.sleep(s);
         CD.FindAndDisplay("xpath", "//body//main//section//div//section[@id='dates-filter-group']");
         System.out.println("Sep is selected: " + CD.PassOrFail(!CD.FindAndDisplay("xpath", "//body//main//*[@id=\"dates-filter-group\"]/p[contains(text(), \"Sep\")]")));
 //
 
 //        TRIP TYPES
         System.out.println("Trip Types is displayed: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//body//div//section//h2[contains(text(), \"Trip Types\")]")));
-        Thread.sleep(s);
         CD.FindAndClick("xpath", "//body//main//section//div//section//h2[contains(text(), \"Trip Types\")]");
-        Thread.sleep(s);
         CD.FindAndClick("xpath", "//body//main//section//div//section//span[contains(text(), \"Escapes\")]");
-        Thread.sleep(s);
         CD.FindAndClick("xpath", "//body//main//section//div//section//h2[contains(text(), \"Trip Types\")]");
         System.out.println("Escapes is selected: " + CD.PassOrFail(CD.FindAndDisplay("xpath", "//*[@id=\"types-filter-group\"]/p[contains(text(), \"Escapes\")]")));
 //
-        Thread.sleep(s);
         CD.FindAndClick("xpath", "//body//main//section//a[@class='default-btn ts-filters-btn']");
-        Thread.sleep(s);
         System.out.println("There are 3 results: " + CD.PassOrFail(CD.driver.findElement(By.xpath("//body//main//section//div//span[@class='count']")).getText().equals("3")));
 //
 
-        Thread.sleep(s);
 
-
-        CD.ThatsIt();
+        CD.Done();
 
     }
 
